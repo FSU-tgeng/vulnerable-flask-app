@@ -1,0 +1,46 @@
+name: Build this Vulnerable Flask App
+
+# Trigger workflow on push to main branch and pull requests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# jobs of this "build.yml" workflow
+jobs:
+  build:
+    runs-on: ubuntu-latest  # the target platform to run the web app
+
+    steps:
+      # Checkout the code (get the code)
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Python environment
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+
+      # Install dependencies. The command "pip install -r requirements.txt"
+      # would install some packages with vulnerabilities
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt 
+
+      # Run Flask app in the background
+      - name: Run Flask app
+        run: |
+          source venv/bin/activate
+          nohup python app.py &  
+
+      # Clean up background process
+      - name: Kill Flask server
+        run: |
+          pkill -f "python app.py"
+

@@ -1,0 +1,14 @@
+name: Main Continuous Integration Pipeline
+
+on:
+  push:
+    branches: ["main"]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.txt'
+    
+jobs:
+  sca:
+    name: SCA
+    uses: ./.github/workflows/sca.yml
+    secrets: inherit

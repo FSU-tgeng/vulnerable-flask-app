@@ -2,7 +2,7 @@
 A simple Python web application built based on Flask. This app might not be able to run, it is used for security analysis lab experiment in CSC471 Software Security.
 
 ## Vulnerable Dependencies
-In the file 'requirements.txt', you can find the list of dependencies of this software. When setting up the development environment, you can use the command `pip -r requirements.txt` to install all the dependencies.
+In the file 'requirements.txt', you can find the list of dependencies of this software. When setting up the development environment, you can use the command `pip install -r requirements.txt` to install all the dependencies.
 
 Here are some python packages (dependencies) with publicly-known security vulnerabilities:
 - **Flask 2.3.1**: This version of Flask has the direct vulnerability "Information Exposure", details can be found here: [Snyk Vulnerability Database: Flask](https://security.snyk.io/package/pip/flask) and [flask@2.3.1 vulnerabilities](https://security.snyk.io/package/pip/flask/2.3.1)
